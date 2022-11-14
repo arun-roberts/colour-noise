@@ -1,2 +1,7 @@
 /Smoke edits.logicx
 *.logicx
+
+/smoke_1m_mono.wav
+/smoke_10s.wav
+/smoke_30s_mono.wav
+*.wav
