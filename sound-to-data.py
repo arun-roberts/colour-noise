@@ -40,11 +40,15 @@ as_floats = []
 for these in from_zero:
     each_float = these / true_max
     as_floats.append(each_float)
-as_nms = []
+# as_nms = []
+as_hues = []
 for float in as_floats:
-    nm = float * 400 + 381
-    as_nms.append(nm)
-as_obj = { "data": as_nms }
+    hue = round(float * 270)
+    as_hues.append(hue)
+    # nm = float * 400 + 381
+    # as_nms.append(nm)
+# as_obj = { "data": as_nms }
+as_obj = { "data": as_hues }
 with open("smoke_30s_mono_nm.json", "w") as j:
     json.dump(as_obj, j)    
 
