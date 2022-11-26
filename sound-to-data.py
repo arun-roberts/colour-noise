@@ -28,7 +28,8 @@ def read_wav(path):
 
 
 
-data, rate = read_wav('./smoke_30s_mono.wav')
+data, rate = read_wav('./smoke_12k.wav')
+print(len(data))
 min = min(data)
 min = min * -1
 from_zero = []
@@ -43,14 +44,14 @@ for these in from_zero:
 # as_nms = []
 as_hues = []
 for float in as_floats:
-    hue = round(float * 270)
+    hue = round(float * 270, 1)
     as_hues.append(hue)
     # nm = float * 400 + 381
     # as_nms.append(nm)
 # as_obj = { "data": as_nms }
 as_obj = { "data": as_hues }
-with open("smoke_30s_mono_nm.json", "w") as j:
-    json.dump(as_obj, j)    
+with open("smoke_12k_full.js", "w") as j:
+    json.dump(as_hues, j)    
 
 # t = open("smoke_30s_mono_floats.txt", "a")
 # for each in as_float:
