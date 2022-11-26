@@ -1,6 +1,7 @@
 import sys
 import wave
 import json
+import colorsys
 
 class Test:
     def __init__(self, arr):
@@ -37,26 +38,31 @@ for each in data:
     for_now = each + min
     from_zero.append(for_now)
 true_max = max(from_zero)
-as_floats = []
+as_rgb = []
 for these in from_zero:
     each_float = these / true_max
-    as_floats.append(each_float)
+    hsl_float = each_float * 300 / 360
+    rgb_floats_tuple = colorsys.hls_to_rgb(hsl_float, 0.5, 1)
+    rgb_string = ''
+    for e in rgb_floats_tuple:
+        rgb_value = round(e * 255)
+        holder = rgb_string + str(rgb_value) + ","
+        rgb_string = holder
+    as_rgb.append(rgb_string.rstrip(',') + ';')
+t = open("smoke_12k_full_rgb.txt", "a")
+for each in as_rgb:
+    t.write(each)
+t.close()
+    
+
 # as_nms = []
-as_hues = []
-for float in as_floats:
-    hue = round(float * 270, 1)
-    as_hues.append(hue)
+# as_hues = []
+# for float in as_floats:
+#     hue = round(float * 270, 1)
+#     as_hues.append(hue)
     # nm = float * 400 + 381
     # as_nms.append(nm)
 # as_obj = { "data": as_nms }
-as_obj = { "data": as_hues }
-with open("smoke_12k_full.js", "w") as j:
-    json.dump(as_hues, j)    
-
-# t = open("smoke_30s_mono_floats.txt", "a")
-# for each in as_float:
-#     # up = each[0]
-#     t.write(str(each))
-#     t.write(', ')
-# t.close()
-    
+# as_obj = { "data": as_hues }
+# with open("smoke_12k_full.js", "w") as j:
+#     json.dump(as_hues, j)    
